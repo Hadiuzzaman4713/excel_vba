@@ -1,153 +1,3 @@
-Sub MultiPlot()
-  Dim rChart As Range
-  Dim iColumn As Long
-  Dim cht1 As Chart
-  Dim StrtRow As Long
-  Dim X As Variant
-  
-' This code was originally obtained from someone else, whom I don't know. It is modified by Hadiuzzaman.
-
-  With Worksheets("Sheet1")
-      StrtRow = 2
-    For Each X In .Range(.Cells(StrtRow, "F"), .Cells(.Range("F:F").SpecialCells(xlCellTypeLastCell).Row, "F"))
-        If X.Value = "" Then
-        
-          Set rChart = .Range(.Cells(StrtRow, "F"), .Cells(X.Offset(-1, 0).Row, "G"))
-          
-          Set cht1 = .Shapes.AddChart.Chart
-   
-        With cht1
-          .Parent.Top = Cells(StrtRow, 14).Top
-          .Parent.Left = Cells(StrtRow, 14).Left
-          '.ChartType = xlXYScatterSmoothNoMarkers
-          .ChartType = 72
-          .HasLegend = False
-          .SetSourceData rChart
-          .HasTitle = True
-          .HasLegend = False
-          .ChartTitle.Text = Cells(StrtRow, 9)
-          .ChartTitle.Font.Bold = True
-          .ChartTitle.Font.Size = 18
-          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
-          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
-          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
-          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
-          .FullSeriesCollection(1).Format.Line.Transparency = 0
-          .FullSeriesCollection(1).Format.Line.Weight = 0
-          .FullSeriesCollection(1).Format.Fill.Visible = msoTrue
-          .FullSeriesCollection(1).Format.Fill.ForeColor.ObjectThemeColor = msoThemeColorText1
-          .FullSeriesCollection(1).Format.Fill.ForeColor.TintAndShade = 0
-          '.FullSeriesCollection(1).Format.Fill.ForeColor.Brightness = 0
-          .FullSeriesCollection(1).Format.Fill.Transparency = 0
-          .FullSeriesCollection(1).Format.Fill.Solid
-          .FullSeriesCollection(1).MarkerSize = 5
-          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
-          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
-          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
-          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
-          .FullSeriesCollection(1).Format.Line.Transparency = 0
-          .FullSeriesCollection(1).Format.Line.Weight = 1.5
-          '.ChartTitle.Border.LineStyle = xlDot
-          .Axes(xlCategory).HasMajorGridlines = True
-          .Axes(xlValue).HasMajorGridlines = True
-          '.Axes(xlCategory).MajorGridlines.Border.LineStyle = xlDash
-          '.Axes(xlValue).MajorGridlines.Border.LineStyle = xlDash
-          .Axes(xlValue).TickLabelPosition = xlTickLabelPositionLow
-          .Axes(xlCategory, xlPrimary).HasTitle = True
-          .Axes(xlCategory).TickLabels.Font.Bold = msoTrue
-          .Axes(xlCategory).TickLabels.Font.Size = 10
-          .Axes(xlCategory).TickLabels.Font.Name = "Times New Roman"
-          .Axes(xlValue).TickLabels.Font.Bold = msoTrue
-          .Axes(xlValue).TickLabels.Font.Size = 10
-          .Axes(xlValue).TickLabels.Font.Name = "Times New Roman"
-          .Axes(xlCategory, xlPrimary).AxisTitle.Characters.Text = "Distance (m) (Left to Right)"
-          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Bold = True
-          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Size = 10
-          '.Axes(xlCategory, xlPrimary).AxisTitle.Border.LineStyle = xlDot
-          .Axes(xlValue, xlPrimary).HasTitle = True
-            
-          .Axes(xlValue, xlPrimary).AxisTitle.Characters.Text = "Elevation (mMSL)"
-          .Axes(xlValue, xlPrimary).AxisTitle.Font.Bold = True
-          .Axes(xlValue, xlPrimary).AxisTitle.Font.Size = 10
-          '.Axes(xlValue, xlPrimary).AxisTitle.Border.LineStyle = xlDot
-          
-        End With
-        
-        StrtRow = X.Offset(1, 0).Row
-           
-        End If
-        
-    Next X
-    
-   'Plot for last Series....
-        
-    Set rChart = .Range(.Cells(StrtRow, "F"), .Cells(.Range("G:G").SpecialCells(xlCellTypeLastCell).Row, "G"))
-          
-          Set cht1 = .Shapes.AddChart.Chart
-   
-        With cht1
-          .Parent.Top = Cells(StrtRow, 14).Top
-          .Parent.Left = Cells(StrtRow, 14).Left
-          '.ChartType = xlXYScatterSmoothNoMarkers
-          .ChartType = 72
-          .HasLegend = False
-          .SetSourceData rChart
-          .HasTitle = True
-          .HasLegend = False
-          .ChartTitle.Text = Cells(StrtRow, 9)
-          .ChartTitle.Font.Bold = True
-          .ChartTitle.Font.Size = 18
-          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
-          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
-          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
-          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
-          .FullSeriesCollection(1).Format.Line.Transparency = 0
-          .FullSeriesCollection(1).Format.Line.Weight = 0
-          .FullSeriesCollection(1).Format.Fill.Visible = msoTrue
-          .FullSeriesCollection(1).Format.Fill.ForeColor.ObjectThemeColor = msoThemeColorText1
-          .FullSeriesCollection(1).Format.Fill.ForeColor.TintAndShade = 0
-          '.FullSeriesCollection(1).Format.Fill.ForeColor.Brightness = 0
-          .FullSeriesCollection(1).Format.Fill.Transparency = 0
-          .FullSeriesCollection(1).Format.Fill.Solid
-          .FullSeriesCollection(1).MarkerSize = 5
-          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
-          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
-          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
-          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
-          .FullSeriesCollection(1).Format.Line.Transparency = 0
-          .FullSeriesCollection(1).Format.Line.Weight = 1.5
-          '.ChartTitle.Border.LineStyle = xlDot
-          .Axes(xlCategory).HasMajorGridlines = True
-          .Axes(xlValue).HasMajorGridlines = True
-          '.Axes(xlCategory).MajorGridlines.Border.LineStyle = xlDash
-          '.Axes(xlValue).MajorGridlines.Border.LineStyle = xlDash
-          .Axes(xlValue).TickLabelPosition = xlTickLabelPositionLow
-          .Axes(xlCategory, xlPrimary).HasTitle = True
-          .Axes(xlCategory).TickLabels.Font.Bold = msoTrue
-          .Axes(xlCategory).TickLabels.Font.Size = 10
-          .Axes(xlCategory).TickLabels.Font.Name = "Times New Roman"
-          .Axes(xlValue).TickLabels.Font.Bold = msoTrue
-          .Axes(xlValue).TickLabels.Font.Size = 10
-          .Axes(xlValue).TickLabels.Font.Name = "Times New Roman"
-          .Axes(xlCategory, xlPrimary).AxisTitle.Characters.Text = "Distance (m) (Left to Right)"
-          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Bold = True
-          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Size = 10
-          '.Axes(xlCategory, xlPrimary).AxisTitle.Border.LineStyle = xlDot
-          .Axes(xlValue, xlPrimary).HasTitle = True
-          .Axes(xlValue, xlPrimary).AxisTitle.Characters.Text = "Elevation (mMSL)"
-          .Axes(xlValue, xlPrimary).AxisTitle.Font.Bold = True
-          .Axes(xlValue, xlPrimary).AxisTitle.Font.Size = 10
-          '.Axes(xlValue, xlPrimary).AxisTitle.Border.LineStyle = xlDot
-        End With
-  End With
-MsgBox "Graphs has been plotted Successfully!", vbOKOnly, "Graph Done"
-End Sub
-
-
-
-
-
-
 Function UDF_HUZ_CONCATENATEMULTIPLE(Ref As Range, Separator As String) As String
 'Used to concatenate multiple cells into one separated by a string
 Dim Cell As Range
@@ -388,4 +238,153 @@ Dim diff As Integer
     Range("A1:D1").Font.Bold = True
     Sheets(Array("copy", "chainage", "area", "vol")).Delete
     ActiveWorkbook.SaveAs filename:=Left(ActiveWorkbook.FullName, InStr(ActiveWorkbook.FullName, ".")) & "xlsx", FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False
+End Sub
+
+
+
+
+
+Sub MultiPlot()
+  Dim rChart As Range
+  Dim iColumn As Long
+  Dim cht1 As Chart
+  Dim StrtRow As Long
+  Dim X As Variant
+  
+' This code was originally obtained from someone else, whom I don't know. It is modified by Hadiuzzaman.
+
+  With Worksheets("Sheet1")
+      StrtRow = 2
+    For Each X In .Range(.Cells(StrtRow, "F"), .Cells(.Range("F:F").SpecialCells(xlCellTypeLastCell).Row, "F"))
+        If X.Value = "" Then
+        
+          Set rChart = .Range(.Cells(StrtRow, "F"), .Cells(X.Offset(-1, 0).Row, "G"))
+          
+          Set cht1 = .Shapes.AddChart.Chart
+   
+        With cht1
+          .Parent.Top = Cells(StrtRow, 14).Top
+          .Parent.Left = Cells(StrtRow, 14).Left
+          '.ChartType = xlXYScatterSmoothNoMarkers
+          .ChartType = 72
+          .HasLegend = False
+          .SetSourceData rChart
+          .HasTitle = True
+          .HasLegend = False
+          .ChartTitle.Text = Cells(StrtRow, 9)
+          .ChartTitle.Font.Bold = True
+          .ChartTitle.Font.Size = 18
+          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
+          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Line.Transparency = 0
+          .FullSeriesCollection(1).Format.Line.Weight = 0
+          .FullSeriesCollection(1).Format.Fill.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Fill.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Fill.ForeColor.TintAndShade = 0
+          '.FullSeriesCollection(1).Format.Fill.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Fill.Transparency = 0
+          .FullSeriesCollection(1).Format.Fill.Solid
+          .FullSeriesCollection(1).MarkerSize = 5
+          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
+          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Line.Transparency = 0
+          .FullSeriesCollection(1).Format.Line.Weight = 1.5
+          '.ChartTitle.Border.LineStyle = xlDot
+          .Axes(xlCategory).HasMajorGridlines = True
+          .Axes(xlValue).HasMajorGridlines = True
+          '.Axes(xlCategory).MajorGridlines.Border.LineStyle = xlDash
+          '.Axes(xlValue).MajorGridlines.Border.LineStyle = xlDash
+          .Axes(xlValue).TickLabelPosition = xlTickLabelPositionLow
+          .Axes(xlCategory, xlPrimary).HasTitle = True
+          .Axes(xlCategory).TickLabels.Font.Bold = msoTrue
+          .Axes(xlCategory).TickLabels.Font.Size = 10
+          .Axes(xlCategory).TickLabels.Font.Name = "Times New Roman"
+          .Axes(xlValue).TickLabels.Font.Bold = msoTrue
+          .Axes(xlValue).TickLabels.Font.Size = 10
+          .Axes(xlValue).TickLabels.Font.Name = "Times New Roman"
+          .Axes(xlCategory, xlPrimary).AxisTitle.Characters.Text = "Distance (m) (Left to Right)"
+          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Bold = True
+          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Size = 10
+          '.Axes(xlCategory, xlPrimary).AxisTitle.Border.LineStyle = xlDot
+          .Axes(xlValue, xlPrimary).HasTitle = True
+            
+          .Axes(xlValue, xlPrimary).AxisTitle.Characters.Text = "Elevation (mMSL)"
+          .Axes(xlValue, xlPrimary).AxisTitle.Font.Bold = True
+          .Axes(xlValue, xlPrimary).AxisTitle.Font.Size = 10
+          '.Axes(xlValue, xlPrimary).AxisTitle.Border.LineStyle = xlDot
+          
+        End With
+        
+        StrtRow = X.Offset(1, 0).Row
+           
+        End If
+        
+    Next X
+    
+   'Plot for last Series....
+        
+    Set rChart = .Range(.Cells(StrtRow, "F"), .Cells(.Range("G:G").SpecialCells(xlCellTypeLastCell).Row, "G"))
+          
+          Set cht1 = .Shapes.AddChart.Chart
+   
+        With cht1
+          .Parent.Top = Cells(StrtRow, 14).Top
+          .Parent.Left = Cells(StrtRow, 14).Left
+          '.ChartType = xlXYScatterSmoothNoMarkers
+          .ChartType = 72
+          .HasLegend = False
+          .SetSourceData rChart
+          .HasTitle = True
+          .HasLegend = False
+          .ChartTitle.Text = Cells(StrtRow, 9)
+          .ChartTitle.Font.Bold = True
+          .ChartTitle.Font.Size = 18
+          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
+          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Line.Transparency = 0
+          .FullSeriesCollection(1).Format.Line.Weight = 0
+          .FullSeriesCollection(1).Format.Fill.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Fill.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Fill.ForeColor.TintAndShade = 0
+          '.FullSeriesCollection(1).Format.Fill.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Fill.Transparency = 0
+          .FullSeriesCollection(1).Format.Fill.Solid
+          .FullSeriesCollection(1).MarkerSize = 5
+          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
+          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Line.Transparency = 0
+          .FullSeriesCollection(1).Format.Line.Weight = 1.5
+          '.ChartTitle.Border.LineStyle = xlDot
+          .Axes(xlCategory).HasMajorGridlines = True
+          .Axes(xlValue).HasMajorGridlines = True
+          '.Axes(xlCategory).MajorGridlines.Border.LineStyle = xlDash
+          '.Axes(xlValue).MajorGridlines.Border.LineStyle = xlDash
+          .Axes(xlValue).TickLabelPosition = xlTickLabelPositionLow
+          .Axes(xlCategory, xlPrimary).HasTitle = True
+          .Axes(xlCategory).TickLabels.Font.Bold = msoTrue
+          .Axes(xlCategory).TickLabels.Font.Size = 10
+          .Axes(xlCategory).TickLabels.Font.Name = "Times New Roman"
+          .Axes(xlValue).TickLabels.Font.Bold = msoTrue
+          .Axes(xlValue).TickLabels.Font.Size = 10
+          .Axes(xlValue).TickLabels.Font.Name = "Times New Roman"
+          .Axes(xlCategory, xlPrimary).AxisTitle.Characters.Text = "Distance (m) (Left to Right)"
+          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Bold = True
+          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Size = 10
+          '.Axes(xlCategory, xlPrimary).AxisTitle.Border.LineStyle = xlDot
+          .Axes(xlValue, xlPrimary).HasTitle = True
+          .Axes(xlValue, xlPrimary).AxisTitle.Characters.Text = "Elevation (mMSL)"
+          .Axes(xlValue, xlPrimary).AxisTitle.Font.Bold = True
+          .Axes(xlValue, xlPrimary).AxisTitle.Font.Size = 10
+          '.Axes(xlValue, xlPrimary).AxisTitle.Border.LineStyle = xlDot
+        End With
+  End With
+MsgBox "Graphs has been plotted Successfully!", vbOKOnly, "Graph Done"
 End Sub
