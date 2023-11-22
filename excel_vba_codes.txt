@@ -1,0 +1,391 @@
+Sub MultiPlot()
+  Dim rChart As Range
+  Dim iColumn As Long
+  Dim cht1 As Chart
+  Dim StrtRow As Long
+  Dim X As Variant
+  
+' This code was originally obtained from someone else, whom I don't know. It is modified by Hadiuzzaman.
+
+  With Worksheets("Sheet1")
+      StrtRow = 2
+    For Each X In .Range(.Cells(StrtRow, "F"), .Cells(.Range("F:F").SpecialCells(xlCellTypeLastCell).Row, "F"))
+        If X.Value = "" Then
+        
+          Set rChart = .Range(.Cells(StrtRow, "F"), .Cells(X.Offset(-1, 0).Row, "G"))
+          
+          Set cht1 = .Shapes.AddChart.Chart
+   
+        With cht1
+          .Parent.Top = Cells(StrtRow, 14).Top
+          .Parent.Left = Cells(StrtRow, 14).Left
+          '.ChartType = xlXYScatterSmoothNoMarkers
+          .ChartType = 72
+          .HasLegend = False
+          .SetSourceData rChart
+          .HasTitle = True
+          .HasLegend = False
+          .ChartTitle.Text = Cells(StrtRow, 9)
+          .ChartTitle.Font.Bold = True
+          .ChartTitle.Font.Size = 18
+          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
+          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Line.Transparency = 0
+          .FullSeriesCollection(1).Format.Line.Weight = 0
+          .FullSeriesCollection(1).Format.Fill.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Fill.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Fill.ForeColor.TintAndShade = 0
+          '.FullSeriesCollection(1).Format.Fill.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Fill.Transparency = 0
+          .FullSeriesCollection(1).Format.Fill.Solid
+          .FullSeriesCollection(1).MarkerSize = 5
+          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
+          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Line.Transparency = 0
+          .FullSeriesCollection(1).Format.Line.Weight = 1.5
+          '.ChartTitle.Border.LineStyle = xlDot
+          .Axes(xlCategory).HasMajorGridlines = True
+          .Axes(xlValue).HasMajorGridlines = True
+          '.Axes(xlCategory).MajorGridlines.Border.LineStyle = xlDash
+          '.Axes(xlValue).MajorGridlines.Border.LineStyle = xlDash
+          .Axes(xlValue).TickLabelPosition = xlTickLabelPositionLow
+          .Axes(xlCategory, xlPrimary).HasTitle = True
+          .Axes(xlCategory).TickLabels.Font.Bold = msoTrue
+          .Axes(xlCategory).TickLabels.Font.Size = 10
+          .Axes(xlCategory).TickLabels.Font.Name = "Times New Roman"
+          .Axes(xlValue).TickLabels.Font.Bold = msoTrue
+          .Axes(xlValue).TickLabels.Font.Size = 10
+          .Axes(xlValue).TickLabels.Font.Name = "Times New Roman"
+          .Axes(xlCategory, xlPrimary).AxisTitle.Characters.Text = "Distance (m) (Left to Right)"
+          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Bold = True
+          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Size = 10
+          '.Axes(xlCategory, xlPrimary).AxisTitle.Border.LineStyle = xlDot
+          .Axes(xlValue, xlPrimary).HasTitle = True
+            
+          .Axes(xlValue, xlPrimary).AxisTitle.Characters.Text = "Elevation (mMSL)"
+          .Axes(xlValue, xlPrimary).AxisTitle.Font.Bold = True
+          .Axes(xlValue, xlPrimary).AxisTitle.Font.Size = 10
+          '.Axes(xlValue, xlPrimary).AxisTitle.Border.LineStyle = xlDot
+          
+        End With
+        
+        StrtRow = X.Offset(1, 0).Row
+           
+        End If
+        
+    Next X
+    
+   'Plot for last Series....
+        
+    Set rChart = .Range(.Cells(StrtRow, "F"), .Cells(.Range("G:G").SpecialCells(xlCellTypeLastCell).Row, "G"))
+          
+          Set cht1 = .Shapes.AddChart.Chart
+   
+        With cht1
+          .Parent.Top = Cells(StrtRow, 14).Top
+          .Parent.Left = Cells(StrtRow, 14).Left
+          '.ChartType = xlXYScatterSmoothNoMarkers
+          .ChartType = 72
+          .HasLegend = False
+          .SetSourceData rChart
+          .HasTitle = True
+          .HasLegend = False
+          .ChartTitle.Text = Cells(StrtRow, 9)
+          .ChartTitle.Font.Bold = True
+          .ChartTitle.Font.Size = 18
+          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
+          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Line.Transparency = 0
+          .FullSeriesCollection(1).Format.Line.Weight = 0
+          .FullSeriesCollection(1).Format.Fill.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Fill.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Fill.ForeColor.TintAndShade = 0
+          '.FullSeriesCollection(1).Format.Fill.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Fill.Transparency = 0
+          .FullSeriesCollection(1).Format.Fill.Solid
+          .FullSeriesCollection(1).MarkerSize = 5
+          .FullSeriesCollection(1).Format.Line.Visible = msoTrue
+          .FullSeriesCollection(1).Format.Line.ForeColor.ObjectThemeColor = msoThemeColorText1
+          .FullSeriesCollection(1).Format.Line.ForeColor.TintAndShade = 0
+          .FullSeriesCollection(1).Format.Line.ForeColor.Brightness = 0
+          .FullSeriesCollection(1).Format.Line.Transparency = 0
+          .FullSeriesCollection(1).Format.Line.Weight = 1.5
+          '.ChartTitle.Border.LineStyle = xlDot
+          .Axes(xlCategory).HasMajorGridlines = True
+          .Axes(xlValue).HasMajorGridlines = True
+          '.Axes(xlCategory).MajorGridlines.Border.LineStyle = xlDash
+          '.Axes(xlValue).MajorGridlines.Border.LineStyle = xlDash
+          .Axes(xlValue).TickLabelPosition = xlTickLabelPositionLow
+          .Axes(xlCategory, xlPrimary).HasTitle = True
+          .Axes(xlCategory).TickLabels.Font.Bold = msoTrue
+          .Axes(xlCategory).TickLabels.Font.Size = 10
+          .Axes(xlCategory).TickLabels.Font.Name = "Times New Roman"
+          .Axes(xlValue).TickLabels.Font.Bold = msoTrue
+          .Axes(xlValue).TickLabels.Font.Size = 10
+          .Axes(xlValue).TickLabels.Font.Name = "Times New Roman"
+          .Axes(xlCategory, xlPrimary).AxisTitle.Characters.Text = "Distance (m) (Left to Right)"
+          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Bold = True
+          .Axes(xlCategory, xlPrimary).AxisTitle.Font.Size = 10
+          '.Axes(xlCategory, xlPrimary).AxisTitle.Border.LineStyle = xlDot
+          .Axes(xlValue, xlPrimary).HasTitle = True
+          .Axes(xlValue, xlPrimary).AxisTitle.Characters.Text = "Elevation (mMSL)"
+          .Axes(xlValue, xlPrimary).AxisTitle.Font.Bold = True
+          .Axes(xlValue, xlPrimary).AxisTitle.Font.Size = 10
+          '.Axes(xlValue, xlPrimary).AxisTitle.Border.LineStyle = xlDot
+        End With
+  End With
+MsgBox "Graphs has been plotted Successfully!", vbOKOnly, "Graph Done"
+End Sub
+
+
+
+
+
+
+Function UDF_HUZ_CONCATENATEMULTIPLE(Ref As Range, Separator As String) As String
+'Used to concatenate multiple cells into one separated by a string
+Dim Cell As Range
+Dim Result As String
+For Each Cell In Ref
+    Result = Result & Cell.Value & Separator
+Next Cell
+UDF_HUZ_CONCATENATEMULTIPLE = Left(Result, Len(Result) - Len(Separator))
+End Function
+
+
+
+
+
+
+Sub Navedit_HUZ()
+' Keyboard Shortcut: Ctrl+l
+Dim col_no, i As Long
+Dim tide_check, tide_cor As Integer
+Dim WL As Double
+Dim datum, filename, filedir As String
+Application.ScreenUpdating = False
+Columns("A:A").Select
+Selection.TextToColumns Destination:=Range("A1"), Tab:=True, Comma:=True, FieldInfo _
+    :=Array(Array(1, 4), Array(2, 1), Array(3, 1), Array(4, 1), Array(5, 1), Array(6, 9), _
+    Array(7, 9), Array(8, 9), Array(9, 9), Array(10, 9), Array(11, 1)), TrailingMinusNumbers:=True
+Columns("B:B").Select
+Selection.NumberFormat = "h:mm:ss"
+rows("1:1").Select
+Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+Range("A1") = "Date"
+Range("B1") = "Time"
+Range("C1") = "Easting (m)"
+Range("D1") = "Northing (m)"
+tide_check = MsgBox("Have you done tide correction?", vbQuestion + vbYesNo)
+If tide_check = vbYes Then
+    datum = UCase(InputBox("Please write the name of Datum."))
+    Range("E1") = "RL(m" & datum & ")"
+ElseIf tide_check = vbNo Then
+    tide_cor = MsgBox("Do you want to do tide correction using one WL value?", vbQuestion + vbYesNo)
+    If tide_cor = vbYes Then
+        col_no = Application.WorksheetFunction.CountA(Columns("B:B"))
+        datum = UCase(InputBox("Please write the name of Datum:"))
+        WL = InputBox("Please input the WL value:")
+        For i = 2 To col_no
+            Cells(i, 5) = FormatNumber(WL + Cells(i, 5), 2)
+        Next i
+        Range("E1") = "RL(m" & datum & ")"
+    ElseIf tide_cor = vbNo Then
+        Range("E1") = "Depth"
+    End If
+End If
+Range("F1") = "Remarks"
+Columns("A:F").Select
+With Selection.Font
+    .Name = "Times New Roman"
+End With
+With Selection
+    .HorizontalAlignment = xlCenter
+    .VerticalAlignment = xlCenter
+End With
+Columns("A:F").EntireColumn.AutoFit
+Range("A1").Select
+ActiveWorkbook.Save
+End Sub
+
+
+
+
+
+
+Sub pointline()
+'
+' To help format for XYZ to line
+'
+
+'
+    Dim myrang As Range, rows, trows, col As Integer, col_name, sort_field As String
+    sort_field = InputBox("Which column will control sorting?")
+    Range(Selection, Selection.End(xlToRight)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Set myrang = Selection
+    rows = ActiveCell.Row
+    trows = Selection.rows.Count
+    col = Selection.Columns.Count
+    col_name = Left(Cells(1, col + 1).Address(False, False), 1)
+    ActiveWorkbook.ActiveSheet.Sort.SortFields.Clear
+    myrang.Sort Key1:=Range(sort_field & rows), Header:=xlYes
+    ActiveCell.Offset(1, col).Select
+    ActiveCell.FormulaR1C1 = "=TEXTJOIN("","",TRUE,RC[-6]:RC[-4])"
+    Selection.AutoFill Destination:=Range(col_name & rows + 1 & ":" & col_name & rows + trows - 1)
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.Copy
+End Sub
+
+
+
+
+
+Sub pointline2()
+    Selection.End(xlDown).Select
+    Selection.End(xlToLeft).Select
+    Selection.End(xlDown).Select
+End Sub
+
+
+
+
+
+
+Sub hypack_conversion()
+' This is helpful to format the volume txt file saved from Hypack using Chinese I End Area I method.
+' Keyboard shortcut: ctrl+h
+Dim i, j, k, l, rowval As Long
+Dim diff As Integer
+    Application.DisplayAlerts = False
+    diff = InputBox("Enter chainage interval:")
+    Sheets(1).Copy After:=Sheets(1)
+    ActiveSheet.Name = "copy"
+    Range("A1048576").Select
+    Selection.End(xlUp).Select
+    rowval = ActiveCell.Row
+    Sheets.Add After:=ActiveSheet
+    ActiveSheet.Name = "chainage"
+    Sheets.Add After:=Sheets("chainage")
+    ActiveSheet.Name = "area"
+    Sheets.Add After:=Sheets("area")
+    ActiveSheet.Name = "vol"
+    Sheets.Add After:=Sheets("vol")
+    ActiveSheet.Name = "Volume"
+    Sheets("copy").Activate
+    j = 1
+    k = 1
+    l = 1
+    For i = 1 To rowval
+        If Left(Range("C" & i), 11) = " Data File:" Then
+            Range("C" & i).Copy
+            Sheets("chainage").Activate
+            Range("A" & j).PasteSpecial
+            Sheets("copy").Activate
+            j = j + 1
+        End If
+        If Left(Range("A" & i), 5) = "Area:" Then
+            Range("A" & i).Copy
+            Sheets("area").Activate
+            Range("A" & k).PasteSpecial
+            Sheets("copy").Activate
+            k = k + 1
+        End If
+        If Left(Range("A" & i), 4) = "Vol:" Then
+            Range("A" & i).Copy
+            Sheets("vol").Activate
+            Range("A" & l).PasteSpecial
+            Sheets("copy").Activate
+            l = l + 1
+        End If
+    Next i
+    j = j - 1
+    k = k - 1
+    l = l - 1
+    Sheets("chainage").Activate
+    For i = 1 To j
+        Range("B" & i) = Mid(Range("A" & i), 13, 2) & Mid(Range("A" & i), 16, 3)
+        If i > 1 Then
+            If diff <> Range("B" & i) - Range("B" & i - 1) Then
+                MsgBox ("There is a chainage gap after chainage: " & Range("B" & i - 1).Value)
+            End If
+        End If
+    Next i
+    Range("B1:B" & j).Select
+    Selection.Copy
+    Sheets("Volume").Activate
+    Range("A2").PasteSpecial
+    Range("A1") = "Chainage"
+    Range("B1") = "Area(m2)"
+    Range("C1") = "Volume_by_Area(m3)"
+    Range("D1") = "Volume_by_Hypack(m3)"
+    Range("C2:D2") = "-"
+    Range("B1").Characters(Start:=7, Length:=1).Font.Superscript = True
+    Range("C1").Characters(Start:=17, Length:=1).Font.Superscript = True
+    Range("D1").Characters(Start:=19, Length:=1).Font.Superscript = True
+    Sheets("area").Activate
+    Columns("A:A").Select
+    Selection.TextToColumns Destination:=ActiveCell, DataType:=xlDelimited, _
+        TextQualifier:=xlDoubleQuote, ConsecutiveDelimiter:=True, Tab:=False, _
+        Semicolon:=False, Comma:=False, Space:=True, Other:=False, FieldInfo _
+        :=Array(Array(1, 1), Array(2, 1), Array(3, 1), Array(4, 1), Array(5, 1), Array(6, 1), _
+        Array(7, 1), Array(8, 1), Array(9, 1), Array(10, 1), Array(11, 1)), _
+        TrailingMinusNumbers:=True
+    Range("G:G,I:I").Select
+    Selection.Delete Shift:=xlToLeft
+    Range("J2").Select
+    For i = 1 To k
+        Range("J" & i) = Application.WorksheetFunction.Sum(Range("B" & i & ":I" & i))
+    Next i
+    Range("J1:J" & k).Select
+    Selection.Copy
+    Sheets("Volume").Activate
+    Range("B2").PasteSpecial
+    Sheets("vol").Activate
+    Columns("A:A").Select
+    Selection.TextToColumns Destination:=ActiveCell, DataType:=xlDelimited, _
+        TextQualifier:=xlDoubleQuote, ConsecutiveDelimiter:=True, Tab:=False, _
+        Semicolon:=False, Comma:=False, Space:=True, Other:=False, FieldInfo _
+        :=Array(Array(1, 1), Array(2, 1), Array(3, 1), Array(4, 1), Array(5, 1), Array(6, 1), _
+        Array(7, 1), Array(8, 1), Array(9, 1), Array(10, 1), Array(11, 1)), _
+        TrailingMinusNumbers:=True
+    Range("G:G,I:I").Select
+    Selection.Delete Shift:=xlToLeft
+    Range("J2").Select
+    For i = 1 To l
+        Range("J" & i) = Application.WorksheetFunction.Sum(Range("B" & i & ":I" & i))
+    Next i
+    Range("J1:J" & l).Select
+    Selection.Copy
+    Sheets("Volume").Activate
+    Range("D3").PasteSpecial
+    Range("C3").Select
+    ActiveCell.FormulaR1C1 = "=(RC[-2]-R[-1]C[-2])*(R[-1]C[-1]+RC[-1])/2"
+    Selection.AutoFill Destination:=ActiveCell.Range("A1:A" & l)
+    Range("C" & l + 3) = Application.WorksheetFunction.Sum(Range("C3:C" & l + 2))
+    Range("D" & l + 3) = Application.WorksheetFunction.Sum(Range("D3:D" & l + 2))
+    Range("A" & l + 3 & ":B" & l + 3).Select
+    Selection.Merge
+    ActiveCell.FormulaR1C1 = "Total Volume (m3)"
+    ActiveCell.Characters(Start:=16, Length:=1).Font.Superscript = True
+    Range("A2:A" & j + 1).NumberFormat = "00+000"
+    Range("A1:D" & j + 2).Font.Name = "Times New Roman"
+    Range("A1:D" & j + 2).HorizontalAlignment = xlCenter
+    Range("A1:D" & j + 2).VerticalAlignment = xlCenter
+    Columns("A:D").AutoFit
+    Range("A1:D" & j + 2).BorderAround Weight:=xlMedium
+    Range("A1:D" & j + 2).Borders(xlInsideHorizontal).Weight = xlThin
+    Range("A1:D" & j + 2).Borders(xlInsideVertical).Weight = xlThin
+    Range("A1:D1").BorderAround Weight:=xlMedium
+    Range("A" & j + 2 & ":D" & j + 2).BorderAround Weight:=xlMedium
+    Range("A" & j + 2 & ":D" & j + 2).Font.Bold = True
+    Range("A1:D1").Font.Bold = True
+    Sheets(Array("copy", "chainage", "area", "vol")).Delete
+    ActiveWorkbook.SaveAs filename:=Left(ActiveWorkbook.FullName, InStr(ActiveWorkbook.FullName, ".")) & "xlsx", FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False
+End Sub
